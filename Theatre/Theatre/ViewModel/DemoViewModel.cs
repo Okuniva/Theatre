@@ -1,13 +1,27 @@
-﻿using System.Windows.Input;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using Theatre.Annotations;
 using Xamarin.Forms;
 
 namespace Theatre.ViewModel
 {
-    public class DemoViewModel
+    public class DemoViewModel : INotifyPropertyChanged
     {
-        public States State { get; set; } = States.Normal;
-        
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
+        private States state; 
         public ICommand LoadDataCommand => new Command(Load);
+
+        public States State
+        {
+            get { return state; }
+            set
+            {
+                state = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("State"));
+            }
+        }
 
         private void Load()
         {
@@ -22,8 +36,16 @@ namespace Theatre.ViewModel
         public enum States
         {
             Loading,
-            Normal,
+            Normal
         }
+
+        //public event PropertyChangedEventHandler PropertyChanged;
+
+        //[NotifyPropertyChangedInvocator]
+        //protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
     }
 
 }

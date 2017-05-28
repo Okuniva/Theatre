@@ -16,7 +16,7 @@ namespace Theatre.View
         public DemoPage()
         {
             InitializeComponent();
-            BindingContext = new DemoViewModel();
+            this.BindingContext = new DemoViewModel();
         }
     }
 }
