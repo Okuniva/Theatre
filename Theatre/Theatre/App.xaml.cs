@@ -15,7 +15,8 @@ namespace Theatre
         {
             InitializeComponent();
 
-            MainPage = new View.MainPage();
+            //MainPage = new View.MainPage();
+            MainPage = new View.DemoPage();
         }
 
         protected override void OnStart()

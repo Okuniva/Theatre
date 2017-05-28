@@ -20,11 +20,6 @@ namespace Theatre.Services
             var o = JObject.Parse(jsonContens);
             var performances = JsonConvert.DeserializeObject<List<Performance>>(o.SelectToken(@"$.response.perfs").ToString());
 
-            Debug.WriteLine("________________________________________________________________________!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
-            Debug.WriteLine(performances.Count);
-
-
             var realm = new RealmDBService();
             foreach (var performance in performances)
             {

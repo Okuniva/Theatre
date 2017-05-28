@@ -16,7 +16,7 @@ namespace Theatre.View
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            (BindingContext as PerformanceListViewModel)?.Init();
+            (BindingContext as PerformanceListViewModel)?.Init(2);
         }
     }
 }

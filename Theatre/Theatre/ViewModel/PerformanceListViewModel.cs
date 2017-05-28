@@ -40,12 +40,17 @@ namespace Theatre.ViewModel
         public PerformanceListViewModel(IDBService dbService)
         {
             DBService = dbService;
-            Init();
+            Init(2);
         }
 
         public void Init()
         {
             Performance = new ObservableCollection<Performance>(DBService.GetPerfomances());
+        }
+
+        public void Init(int id)
+        {
+            Performance = new ObservableCollection<Performance>(DBService.GetPerformancesByTypeId(id));
         }
     }
 }
