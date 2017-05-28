@@ -10,24 +10,20 @@ namespace Theatre.Services
 {
     public class RealmDBService : IDBService
     {
-        public Realm RealmInstance;
+        private Realm RealmInstance;
 
-        public RealmDBService()
-        {
-            RealmInstance = Realm.GetInstance();
-        }
-
-        public RealmDBService(int a)
-        {
-            RealmInstance = Realm.GetInstance();
-        }
+        public RealmDBService() { RealmInstance = Realm.GetInstance(); }
 
         public Performance GetPerformanceById(int id)
         {
             var list = GetPerfomances();
             return list.FirstOrDefault(p => p.id == id);
         }
-        
+
+        public List<Performance> GetPerformancesByTypeId(int id)
+        {
+            return RealmInstance.All<Performance>().Where(t => t.p_type_id == id).ToList();
+        }
 
         public List<Performance> GetPerfomances()
         {
