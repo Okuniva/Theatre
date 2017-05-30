@@ -11,7 +11,7 @@ namespace Theatre.Services
 
         List<Performance> GetPerfomances();
 
-        List<Performance> GetPerformancesByTypeId(int id);
+        List<Performance> GetPerformancesByType(int type);
 
         List<Performance> SearchPerformances(string searchText);
 

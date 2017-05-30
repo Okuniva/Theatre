@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,7 +13,10 @@ namespace Theatre.Services
     {
         private Realm RealmInstance;
 
-        public RealmDBService() { RealmInstance = Realm.GetInstance(); }
+        public RealmDBService()
+        {
+            RealmInstance = Realm.GetInstance();
+        }
 
         public Performance GetPerformanceById(int id)
         {
@@ -20,15 +24,14 @@ namespace Theatre.Services
             return list.FirstOrDefault(p => p.id == id);
         }
 
-        public List<Performance> GetPerformancesByTypeId(int id)
-        {
-            return RealmInstance.All<Performance>().Where(t => t.p_type_id == id).ToList();
-        }
-
         public List<Performance> GetPerfomances()
         {
-            new LoadPerfomanceServices().SetPerfomance();
             return RealmInstance.All<Performance>().ToList();
+        }
+
+        public List<Performance> GetPerformancesByType(int type)
+        {
+            return RealmInstance.All<Performance>().Where(t => t.p_type_id == type).ToList();
         }
 
         public void SavePerfomance(Performance performance)
@@ -38,7 +41,8 @@ namespace Theatre.Services
 
         public List<Performance> SearchPerformances(string searchText)
         {
-            return RealmInstance.All<Performance>().Where(p => p.name.Contains(searchText) || p.desc.Contains(searchText)).ToList();
+            return RealmInstance.All<Performance>()
+                .Where(p => p.name.Contains(searchText) || p.desc.Contains(searchText)).ToList();
         }
     }
 }

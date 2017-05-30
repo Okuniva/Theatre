@@ -4,19 +4,18 @@ using Theatre.Services;
 using Theatre.ViewModel;
 using Xamarin.Forms;
 
-namespace Theatre.View
+namespace Theatre.View.PerformancePage
 {
-    public partial class MainPage : ContentPage
+    public partial class HomePage : TabbedPage
     {
-        public MainPage()
+        public HomePage()
         {
             InitializeComponent();
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
-            (BindingContext as PerformanceListViewModel)?.Init(2);
         }
     }
 }

@@ -1,21 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="Theatre.View.MainPage"
+    x:Class="Theatre.View.PerformancePage.СomedyPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Theatre;assembly=Theatre"
-    Title="Афиша"
-    BindingContext="{Binding PerformanceListVM, Source={x:Static local:App.VMLocator}}">
-
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Content>
         <ListView
-            x:Name="DramaLV"
+            x:Name="ComedyLV"
+            CachingStrategy="RecycleElement"
             HasUnevenRows="True"
             IsPullToRefreshEnabled="False"
             ItemsSource="{Binding Performance}">
-            <x:Arguments>
-                <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
-            </x:Arguments>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

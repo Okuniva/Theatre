@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="Theatre.View.PerformancePage.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:perf="clr-namespace:Theatre.View.PerformancePage;assembly=Theatre">
+
+    <TabbedPage.Children>
+        <perf:DramaPage Title="Драма" />
+        <perf:СomedyPage Title="Коммедия" />
+        <perf:OperaPage Title="Опера" />
+        <perf:DreamPage Title="Сказка" />
+    </TabbedPage.Children>
+
+</TabbedPage>

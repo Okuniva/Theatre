@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Theatre.Services;
 using Theatre.ViewModel;
 using Xamarin.Forms;
 
@@ -9,14 +10,10 @@ namespace Theatre
 {
     public partial class App : Application
     {
-        public static ViewModelLocator VMLocator = new ViewModelLocator();
-
         public App()
         {
             InitializeComponent();
-
-            //MainPage = new View.MainPage();
-            MainPage = new View.DemoPage();
+            MainPage = new View.SwipeLeftMenuPage();
         }
 
         protected override void OnStart()

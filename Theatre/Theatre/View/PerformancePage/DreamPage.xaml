@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Theatre.View.PerformancePage.DreamPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <ListView
+            x:Name="DreamLV"
+            HasUnevenRows="True"
+            CachingStrategy="RecycleElement"
+            IsPullToRefreshEnabled="False"
+            ItemsSource="{Binding Performance}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Spacing="5">
+                                <Image Aspect="AspectFit" Source="{Binding img}" />
+                                <StackLayout Orientation="Horizontal">
+                                    <Label
+                                        FontSize="Small"
+                                        Text="  Название:  "
+                                        TextColor="#212121" />
+                                    <Label FontSize="Small" Text="{Binding name}" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label
+                                        FontSize="Small"
+                                        Text="  Дата:  "
+                                        TextColor="#212121" />
+                                    <Label FontSize="Small" Text="{Binding near}" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label
+                                        FontSize="Small"
+                                        Text="  Театр:  "
+                                        TextColor="#212121" />
+                                    <Label FontSize="Small" Text="{Binding theatre_name}" />
+                                </StackLayout>
+                                <BoxView HeightRequest="5" Color="#519657" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

@@ -39,6 +39,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\StateCondition.cs" />
+    <Compile Include="CustomRender\CustomViewCell.cs" />
+    <Compile Include="Model\Actor.cs" />
     <Compile Include="Model\Article.cs" />
     <Compile Include="Model\DataMenuItem.cs" />
     <Compile Include="Model\Theatre.cs" />
@@ -48,21 +50,31 @@
     <Compile Include="Services\LoadPerfomanceServices.cs" />
     <Compile Include="Services\RealmDBService.cs" />
     <Compile Include="Controls\StateContainer.cs" />
-    <Compile Include="ViewModel\DemoViewModel.cs" />
     <Compile Include="ViewModel\PerformanceListViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="View\DemoPage.xaml.cs">
-      <DependentUpon>DemoPage.xaml</DependentUpon>
+    <Compile Include="View\PerformancePage\DramaPage.xaml.cs">
+      <DependentUpon>DramaPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="View\PerformancePage\DreamPage.xaml.cs">
+      <DependentUpon>DreamPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PerformancePage\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Performance.cs" />
     <Compile Include="Model\Poster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\PerformancePage\OperaPage.xaml.cs">
+      <DependentUpon>OperaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PerformancePage\СomedyPage.xaml.cs">
+      <DependentUpon>СomedyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SwipeLeftMenuPage.xaml.cs">
+      <DependentUpon>SwipeLeftMenuPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\MainPage.xaml">
+    <EmbeddedResource Include="View\PerformancePage\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -104,7 +116,31 @@
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\DemoPage.xaml">
+    <EmbeddedResource Include="View\PerformancePage\DramaPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\PerformancePage\СomedyPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\PerformancePage\OperaPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\PerformancePage\DreamPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\SwipeLeftMenuPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
