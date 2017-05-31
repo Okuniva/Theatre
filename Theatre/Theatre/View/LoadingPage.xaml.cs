@@ -22,7 +22,7 @@ namespace Theatre.View
 
         private async void Button_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new DramaPage(), true);
+            await Navigation.PushAsync(new HomePage(), true);
         }
     }
 }

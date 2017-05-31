@@ -10,9 +10,9 @@ namespace Theatre
         public App()
         {
             InitializeComponent();
-            MainPage = new View.SwipeLeftMenuPage();
+            //MainPage = new View.SwipeLeftMenuPage();
             //MainPage = new View.PerformancePage.DramaPage();
-            //MainPage = new View.LoadingPage();
+            MainPage = new View.LoadingPage();
         }
 
         protected override void OnStart()

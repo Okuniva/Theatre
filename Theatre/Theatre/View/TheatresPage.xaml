@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Theatre.View.TheatresPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Theatre;assembly=Theatre"
+    BindingContext="{Binding TheatresListVM, Source={x:Static local:App.VMLocator}}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin Forms!" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

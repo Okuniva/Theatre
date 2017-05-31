@@ -12,7 +12,7 @@ namespace Theatre.View.PerformancePage
             InitializeComponent();
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
             //BindingContext = new PerformanceListViewModel(1);

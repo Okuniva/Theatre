@@ -6,6 +6,12 @@ namespace Theatre.ViewModel
     {
         public LoadingViewModel LoginVM { get; set; }
         public PerformanceListViewModel DramaListVM { get; set; }
+        public PerformanceListViewModel DreamListVM { get; set; }
+        public PerformanceListViewModel OperaListVM { get; set; }
+        public PerformanceListViewModel ComedyListVM { get; set; }
+        public PerformanceListViewModel ArticleListVM { get; set; }
+        public PerformanceListViewModel TheatresListVM { get; set; }
+        public PerformanceListViewModel TicketListVM { get; set; }
 
         public ViewModelLocator()
         {

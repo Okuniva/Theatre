@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Theatre.Services;
+using Theatre.View.PerformancePage;
 
 namespace Theatre.ViewModel
 {
@@ -28,6 +29,7 @@ namespace Theatre.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs("State"));
             }
         }
+
         public LoadingViewModel(IDBService dbService)
         {
             DBService = dbService;
@@ -44,6 +46,7 @@ namespace Theatre.ViewModel
                 _LoadJsonTask.ContinueWith((t) =>
                 {
                     Debug.WriteLine("done");
+                    var reP = new DramaPage();
                     State = States.Normal;
                     _LoadJsonTask = null;
                 }, TaskScheduler.FromCurrentSynchronizationContext());

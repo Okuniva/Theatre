@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Theatre.Model;
 using Theatre.Services;
@@ -9,9 +10,9 @@ namespace Theatre.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        private List<Performance> _performance;
+        private ObservableCollection<Performance> _performance;
 
-        public List<Performance> Performance
+        public ObservableCollection<Performance> Performance
         {
             get => _performance;
             set
@@ -30,14 +31,14 @@ namespace Theatre.ViewModel
             {
                 _searchText = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("SearchText"));
-                Performance = new List<Performance>(DBService.SearchPerformances(_searchText));
+                Performance = new ObservableCollection<Performance>(DBService.SearchPerformances(_searchText));
             }
         }
 
         protected IDBService DBService;
 
         //1 - Drama
-        //2 - Commedia
+        //2 - Comedy
         //3 - Opera
         //4 - Dream
         public PerformanceListViewModel(IDBService dbService, int type)
@@ -49,7 +50,10 @@ namespace Theatre.ViewModel
 
         public void Init(int type)
         {
-            Performance = new List<Performance>(DBService.GetPerformancesByType(type));
+            Performance = new ObservableCollection<Performance>(DBService.GetPerformancesByType(type));
+            //var item = await new LoadServices().GetPerfomances();
+            //Performance = null;
+            //Performance = item;
         }
     }
 }

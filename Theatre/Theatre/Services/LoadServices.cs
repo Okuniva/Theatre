@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -48,6 +49,20 @@ namespace Theatre.Services
                 Debug.WriteLine("AddNewPerf");
                 dbService.SavePerfomance(newPerformance);
             }
+        }
+
+        public async Task<List<Performance>> GetPerfomances()
+        {
+            //HttpClient client = new HttpClient();
+            var jsonContens =
+                //await client.GetStringAsync("http://api-theatre.herokuapp.com/utils/updates?stamp=" +
+                //                             App.Current.Properties["timestamp"]);
+                await _client.GetStringAsync("http://api-theatre.herokuapp.com/utils/updates?stamp=0");
+            var o = JObject.Parse(jsonContens);
+            var performances =
+                JsonConvert.DeserializeObject<List<Performance>>(o.SelectToken(@"$.response.performances").ToString());
+
+            return performances;
         }
 
         public async Task ResetAllData(IDBService dbService)

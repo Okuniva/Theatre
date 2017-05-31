@@ -40,6 +40,7 @@
     </Compile>
     <Compile Include="Controls\StateCondition.cs" />
     <Compile Include="CustomRender\CustomViewCell.cs" />
+    <Compile Include="CustomRender\HtmlLabel.cs" />
     <Compile Include="Model\Actor.cs" />
     <Compile Include="Model\Article.cs" />
     <Compile Include="Model\DataMenuItem.cs" />
@@ -52,9 +53,17 @@
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\RealmDBService.cs" />
     <Compile Include="Controls\StateContainer.cs" />
+    <Compile Include="ViewModel\ArticleListViewModel.cs" />
     <Compile Include="ViewModel\LoadingViewModel.cs" />
     <Compile Include="ViewModel\PerformanceListViewModel.cs" />
+    <Compile Include="ViewModel\TheatresListViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\ArticlePage.xaml.cs">
+      <DependentUpon>ArticlePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DetailHomePage.xaml.cs">
+      <DependentUpon>DetailHomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoadingPage.xaml.cs">
       <DependentUpon>LoadingPage.xaml</DependentUpon>
     </Compile>
@@ -76,8 +85,17 @@
     <Compile Include="View\PerformancePage\СomedyPage.xaml.cs">
       <DependentUpon>СomedyPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SwipeLeftMenuPage.xaml.cs">
       <DependentUpon>SwipeLeftMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TheatresPage.xaml.cs">
+      <DependentUpon>TheatresPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TicketsPage.xaml.cs">
+      <DependentUpon>TicketsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +172,36 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\LoadingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\ArticlePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\SearchPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\TheatresPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\TicketsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\DetailHomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
