@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Theatre.Model;
 
 namespace Theatre.Services
@@ -8,6 +6,10 @@ namespace Theatre.Services
     public interface IDBService
     {
         void SavePerfomance(Performance performance);
+
+        void SaveArticle(Article article);
+
+        void SaveTheatre(Model.Theatre theatre);
 
         List<Performance> GetPerfomances();
 

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Theatre.View.LoadingPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Theatre.Controls;assembly=Theatre"
+    xmlns:local="clr-namespace:Theatre;assembly=Theatre"
+    BindingContext="{Binding LoginVM, Source={x:Static local:App.VMLocator}}">
+    <controls:StateContainer State="{Binding State}">
+
+        <controls:StateCondition State="Loading">
+            <ActivityIndicator IsRunning="True" />
+        </controls:StateCondition>
+
+        <controls:StateCondition State="Normal">
+            <StackLayout>
+                <Button Clicked="Button_OnClicked" />
+            </StackLayout>
+        </controls:StateCondition>
+
+    </controls:StateContainer>
+</ContentPage>

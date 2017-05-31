@@ -6,8 +6,8 @@
     <ContentPage.Content>
         <ListView
             x:Name="DreamLV"
-            HasUnevenRows="True"
             CachingStrategy="RecycleElement"
+            HasUnevenRows="True"
             IsPullToRefreshEnabled="False"
             ItemsSource="{Binding Performance}">
             <ListView.ItemTemplate>

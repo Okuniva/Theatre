@@ -7,9 +7,9 @@
 
     <TabbedPage.Children>
         <perf:DramaPage Title="Драма" />
-        <perf:СomedyPage Title="Коммедия" />
-        <perf:OperaPage Title="Опера" />
-        <perf:DreamPage Title="Сказка" />
+        <!--<perf:СomedyPage Title="Коммедия" />-->
+        <!--<perf:OperaPage Title="Опера" />
+        <perf:DreamPage Title="Сказка" />-->
     </TabbedPage.Children>
 
 </TabbedPage>

@@ -24,6 +24,16 @@ namespace Theatre.Services
             return list.FirstOrDefault(p => p.id == id);
         }
 
+        public void SaveArticle(Article article)
+        {
+            RealmInstance.Write(() => RealmInstance.Add(article, true));
+        }
+
+        public void SaveTheatre(Model.Theatre theatre)
+        {
+            RealmInstance.Write(() => RealmInstance.Add(theatre, true));
+        }
+
         public List<Performance> GetPerfomances()
         {
             return RealmInstance.All<Performance>().ToList();
@@ -31,6 +41,7 @@ namespace Theatre.Services
 
         public List<Performance> GetPerformancesByType(int type)
         {
+            Debug.WriteLine(RealmInstance.All<Performance>().Count(t => t.p_type_id == type));
             return RealmInstance.All<Performance>().Where(t => t.p_type_id == type).ToList();
         }
 

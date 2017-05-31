@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Theatre.Services;
-using Theatre.ViewModel;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Theatre.View.PerformancePage
@@ -21,7 +14,8 @@ namespace Theatre.View.PerformancePage
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            BindingContext = new PerformanceListViewModel(2);
+            //BindingContext = new PerformanceListViewModel(2);
+            //(BindingContext as PerformanceListViewModel)?.Init(2);
         }
     }
 }

@@ -1,37 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Theatre.Model;
 using Theatre.Services;
-using Xamarin.Forms;
 
 namespace Theatre.ViewModel
 {
     public class PerformanceListViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-
-        public ICommand LoadDataCommand { protected set; get; }
-
-        public enum States
-        {
-            Loading,
-            Normal
-        }
-
-        private States _state;
-
-        public States State
-        {
-            get => _state;
-            set
-            {
-                _state = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("State"));
-            }
-        } 
 
         private List<Performance> _performance;
 
@@ -58,26 +34,17 @@ namespace Theatre.ViewModel
             }
         }
 
-        protected IDBService DBService = new RealmDBService();
+        protected IDBService DBService;
 
         //1 - Drama
         //2 - Commedia
         //3 - Opera
         //4 - Dream
-        public PerformanceListViewModel(int type)
+        public PerformanceListViewModel(IDBService dbService, int type)
         {
-            State = States.Loading;
-            if (type == 1)
-            {
-                object timestamp = "";
-                if (!App.Current.Properties.TryGetValue("timestamp", out timestamp))
-                {
-                    App.Current.Properties.Add("timestamp", "0");
-                }
-                new LoadPerfomancesServices().SetPerfomances(DBService);
-            }
+            DBService = dbService;
+
             Init(type);
-            State = States.Normal;
         }
 
         public void Init(int type)

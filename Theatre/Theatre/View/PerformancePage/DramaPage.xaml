@@ -3,55 +3,47 @@
     x:Class="Theatre.View.PerformancePage.DramaPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:Theatre.Controls;assembly=Theatre">
-    <controls:StateContainer State="{Binding State}">
-
-        <controls:StateCondition State="Loading">
-            <ActivityIndicator IsRunning="True" />
-        </controls:StateCondition>
-
-        <controls:StateCondition State="Normal">
-            <ListView
-                x:Name="DramaLV"
-                CachingStrategy="RecycleElement"
-                HasUnevenRows="True"
-                IsPullToRefreshEnabled="False"
-                ItemsSource="{Binding Performance}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.View>
-                                <StackLayout Spacing="5">
-                                    <Image Aspect="AspectFit" Source="{Binding img}" />
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label
-                                            FontSize="Small"
-                                            Text="  Название:  "
-                                            TextColor="#212121" />
-                                        <Label FontSize="Small" Text="{Binding name}" />
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label
-                                            FontSize="Small"
-                                            Text="  Дата:  "
-                                            TextColor="#212121" />
-                                        <Label FontSize="Small" Text="{Binding near}" />
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label
-                                            FontSize="Small"
-                                            Text="  Театр:  "
-                                            TextColor="#212121" />
-                                        <Label FontSize="Small" Text="{Binding theatre_name}" />
-                                    </StackLayout>
-                                    <BoxView HeightRequest="5" Color="#519657" />
-                                </StackLayout>
-                            </ViewCell.View>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </controls:StateCondition>
-
-    </controls:StateContainer>
+    xmlns:controls="clr-namespace:Theatre.Controls;assembly=Theatre"
+    xmlns:local="clr-namespace:Theatre;assembly=Theatre"
+    BindingContext="{Binding DramaListVM, Source={x:Static local:App.VMLocator}}">
+    <ListView
+        x:Name="DramaLV"
+        CachingStrategy="RecycleElement"
+        HasUnevenRows="True"
+        IsPullToRefreshEnabled="False"
+        ItemsSource="{Binding Performance}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <ViewCell.View>
+                        <StackLayout Spacing="5">
+                            <Image Aspect="AspectFit" Source="{Binding img}" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    FontSize="Small"
+                                    Text="  Название:  "
+                                    TextColor="#212121" />
+                                <Label FontSize="Small" Text="{Binding name}" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    FontSize="Small"
+                                    Text="  Дата:  "
+                                    TextColor="#212121" />
+                                <Label FontSize="Small" Text="{Binding near}" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    FontSize="Small"
+                                    Text="  Театр:  "
+                                    TextColor="#212121" />
+                                <Label FontSize="Small" Text="{Binding theatre_name}" />
+                            </StackLayout>
+                            <BoxView HeightRequest="5" Color="#519657" />
+                        </StackLayout>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>
