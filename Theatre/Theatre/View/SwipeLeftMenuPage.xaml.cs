@@ -18,7 +18,7 @@ namespace Theatre.View
 
             menuList = new List<DataMenuItem>();
             var page1 = new DataMenuItem() { Title = "Главная", Icon = "itemIcon1.png", TargetType = typeof(HomePage) };
-            var page8 = new DataMenuItem() { Title = "Театры", Icon = "itemIcon4.png", TargetType = typeof(LoadingPage) };
+            //var page8 = new DataMenuItem() { Title = "Театры", Icon = "itemIcon4.png", TargetType = typeof(LoadingPage) };
             ////var page3 = new DataMenuItem() { Title = "Репертуар", Icon = "itemIcon4.png", TargetType = typeof(TheatresPage) };
             //var page4 = new DataMenuItem() { Title = "Поиск", Icon = "itemIcon7.png", TargetType = typeof(SearchPage) };
             //var page5 = new DataMenuItem() { Title = "Мой Аккаунт", Icon = "itemIcon3.png", TargetType = typeof(AccountPage) };
@@ -35,14 +35,14 @@ namespace Theatre.View
             //menuList.Add(page5);
             ////menuList.Add(page6);
             //menuList.Add(page7);
-            menuList.Add(page8);
+            //menuList.Add(page8);
             //menuList.Add(page9);
             //menuList.Add(page10);
 
             navigationDrawerList.ItemsSource = menuList;
-            //navigationDrawerList.SelectedItem = page1;
+            navigationDrawerList.SelectedItem = page1;
             navigationDrawerList.SeparatorVisibility = SeparatorVisibility.None;
-            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(LoadingPage)));
+            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(HomePage)));
             //{
             //    BarBackgroundColor = Color.FromHex("#99613B"),
             //    BarTextColor = Color.FromHex("#FFF2D8"),

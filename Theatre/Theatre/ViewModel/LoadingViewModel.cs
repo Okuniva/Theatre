@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Rg.Plugins.Popup.Services;
 using Theatre.Services;
+using Theatre.View;
 using Theatre.View.PerformancePage;
 
 namespace Theatre.ViewModel
@@ -10,54 +12,40 @@ namespace Theatre.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate {};
 
-        public enum States
-        {
-            Loading,
-            Normal
-        }
-
         private Task _LoadJsonTask = null;
-        private States _state;
         protected IDBService DBService;
-
-        public States State
-        {
-            get => _state;
-            set
-            {
-                _state = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("State"));
-            }
-        }
 
         public LoadingViewModel(IDBService dbService)
         {
             DBService = dbService;
-            if (_LoadJsonTask != null)
-            {
-                State = States.Normal;
-                Debug.WriteLine("done");
-            }
-            else
-            {
-                Debug.WriteLine("process");
-                _LoadJsonTask =  new LoadServices().SetPerfomances(DBService);
-
-                _LoadJsonTask.ContinueWith((t) =>
-                {
-                    Debug.WriteLine("done");
-                    var reP = new DramaPage();
-                    State = States.Normal;
-                    _LoadJsonTask = null;
-                }, TaskScheduler.FromCurrentSynchronizationContext());
-            }
 
             Init();
         }
 
-        public void Init()
+        public async void Init()
         {
-            State = States.Loading;
+            //var loadingPage = new LoadingPopupPage();
+            //await PopupNavigation.PushAsync(loadingPage);
+            //if (_LoadJsonTask != null)
+            //{
+            //    await PopupNavigation.RemovePageAsync(loadingPage);
+            //    Debug.WriteLine("done");
+            //}
+            //else
+            //{
+            //    Debug.WriteLine("process");
+
+            //await Task.Delay(2000);
+            _LoadJsonTask = new LoadServices().ResetAllData(DBService);
+
+            await _LoadJsonTask.ContinueWith((t) =>
+             {
+                 Debug.WriteLine("done");
+                 _LoadJsonTask = null;
+             }, TaskScheduler.FromCurrentSynchronizationContext());
+            //}
+            //await PopupNavigation.RemovePageAsync(loadingPage);
+            //await Task.Delay(2000);
         }
     }
 }

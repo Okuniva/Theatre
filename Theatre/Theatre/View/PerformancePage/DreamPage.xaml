@@ -5,13 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Theatre;assembly=Theatre"
     BindingContext="{Binding DreamListVM, Source={x:Static local:App.VMLocator}}">
-    <ContentPage.Content>
+    
         <ListView
             x:Name="DreamLV"
             CachingStrategy="RecycleElement"
             HasUnevenRows="True"
             IsPullToRefreshEnabled="False"
-            ItemsSource="{Binding Performance}">
+            ItemsSource="{Binding Dream}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -46,5 +46,4 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </ContentPage.Content>
 </ContentPage>

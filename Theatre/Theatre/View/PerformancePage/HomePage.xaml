@@ -3,15 +3,15 @@
     x:Class="Theatre.View.PerformancePage.HomePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:perf="clr-namespace:Theatre.View.PerformancePage;assembly=Theatre">
+    xmlns:perf="clr-namespace:Theatre.View.PerformancePage;assembly=Theatre"
+    Title="Афиша">
 
-    <TabbedPage></TabbedPage>
     <TabbedPage.Children>
-        
+
         <perf:DramaPage Title="Драма" />
-        <!--<perf:СomedyPage Title="Коммедия" />-->
-        <!--<perf:OperaPage Title="Опера" />
-        <perf:DreamPage Title="Сказка" />-->
+        <perf:СomedyPage Title="Коммедия" />
+        <perf:OperaPage Title="Опера" />
+        <perf:DreamPage Title="Сказка" />
     </TabbedPage.Children>
 
 </TabbedPage>

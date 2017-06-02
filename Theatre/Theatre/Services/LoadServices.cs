@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Theatre.Model;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
+using Plugin.Settings;
 
 namespace Theatre.Services
 {
@@ -13,13 +15,12 @@ namespace Theatre.Services
     {
         private static readonly HttpClient _client = new HttpClient();
 
-        public async Task SetPerfomances(IDBService dbService)
+        public async void SetPerfomances(IDBService dbService)
         {
-            //HttpClient client = new HttpClient();
             var jsonContens =
-            //await client.GetStringAsync("http://api-theatre.herokuapp.com/utils/updates?stamp=" +
-            //                             App.Current.Properties["timestamp"]);
-            await _client.GetStringAsync("http://api-theatre.herokuapp.com/utils/updates?stamp=0");
+            await _client.GetStringAsync("http://api-theatre.herokuapp.com/utils/updates?stamp=" +
+                                         CrossSettings.Current.GetValueOrDefault<string>("timestamp", "0"));
+            //await _client.GetStringAsync("http://api-theatre.herokuapp.com/utils/updates?stamp=0");
             var o = JObject.Parse(jsonContens);
             var performances =
                 JsonConvert.DeserializeObject<List<Performance>>(o.SelectToken(@"$.response.performances").ToString());
@@ -46,31 +47,34 @@ namespace Theatre.Services
                 {
                     newPerformance.posters.Add(poster);
                 }
-                Debug.WriteLine("AddNewPerf");
+                Debug.WriteLine("AddNewPerf: {0}", newPerformance.id);
                 dbService.SavePerfomance(newPerformance);
             }
+            Debug.WriteLine("SetComplite");
         }
 
-        public async Task<List<Performance>> GetPerfomances()
+        public async Task<ObservableCollection<Performance>> GetPerfomances()
         {
-            //HttpClient client = new HttpClient();
-            var jsonContens =
-                //await client.GetStringAsync("http://api-theatre.herokuapp.com/utils/updates?stamp=" +
-                //                             App.Current.Properties["timestamp"]);
-                await _client.GetStringAsync("http://api-theatre.herokuapp.com/utils/updates?stamp=0");
-            var o = JObject.Parse(jsonContens);
-            var performances =
-                JsonConvert.DeserializeObject<List<Performance>>(o.SelectToken(@"$.response.performances").ToString());
+            var jsonContens = await _client.GetStringAsync("http://api-theatre.herokuapp.com/utils/updates?stamp=0");
+            JObject o = JObject.Parse(jsonContens);
+            var str = o.SelectToken(@"$.response.performances");
+            var performances = JsonConvert.DeserializeObject<ObservableCollection<Performance>>(str.ToString());
+            //var performances = JsonConvert.DeserializeObject<ObservableCollection<Opera>>((string) type);
 
+            //Debug.WriteLine(@"$.response.performances[?(@.p_type_id==1)]");^
+            //return null;
             return performances;
         }
 
+        //public async Task<ObservableCollection<Performance>> ResetAllData(IDBService dbService)
         public async Task ResetAllData(IDBService dbService)
         {
-            var jsonContens = await _client.GetStringAsync("/utils/updates?stamp=0");
-            var data = JsonConvert.DeserializeObject<Response>(jsonContens);
-            
-            foreach (var performance in data.performances)
+            var jsonContens = await _client.GetStringAsync("http://api-theatre.herokuapp.com/utils/updates?stamp=" +
+                                                           CrossSettings.Current.GetValueOrDefault<string>("timestamp",
+                                                               "0"));
+            var data = JsonConvert.DeserializeObject<RootObject>(jsonContens);
+
+            foreach (var performance in data.response.performances)
             {
                 var newPerformance = new Performance
                 {
@@ -96,36 +100,37 @@ namespace Theatre.Services
                 dbService.SavePerfomance(newPerformance);
             }
 
-            foreach (var article in data.articles)
-            {
-                var newArticle = new Article
-                {
-                    id = article.id,
-                    name = article.name,
-                    desc = article.desc,
-                    img = article.img,
-                    date = article.date,
-                    theatre_name = article.theatre_name
-                };
+            //foreach (var article in data.articles)
+            //{
+            //    var newArticle = new Article
+            //    {
+            //        id = article.id,
+            //        name = article.name,
+            //        desc = article.desc,
+            //        img = article.img,
+            //        date = article.date,
+            //        theatre_name = article.theatre_name
+            //    };
 
-                dbService.SaveArticle(newArticle);
-            }
+            //    dbService.SaveArticle(newArticle);
+            //}
 
-            foreach (var theatre in data.theatres)
-            {
-                var newTheatre = new Model.Theatre
-                {
-                    id = theatre.id,
-                    name = theatre.name,
-                    desc = theatre.desc,
-                    img = theatre.img,
-                    address = theatre.address
-                };
+            //foreach (var theatre in data.theatres)
+            //{
+            //    var newTheatre = new Model.Theatre
+            //    {
+            //        id = theatre.id,
+            //        name = theatre.name,
+            //        desc = theatre.desc,
+            //        img = theatre.img,
+            //        address = theatre.address
+            //    };
 
-                dbService.SaveTheatre(newTheatre);
-            }
-            Debug.WriteLine(data.performances.Count);
-            App.Current.Properties.Add("timestamp", data.timestamp);
+            //    dbService.SaveTheatre(newTheatre);
+            //}
+            Debug.WriteLine(data.response.performances.Count);
+            CrossSettings.Current.AddOrUpdateValue<string>("timestamp", data.response.timestamp);
+            //return data.response.performances;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Theatre.ViewModel;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Theatre.View.PerformancePage
@@ -9,13 +10,12 @@ namespace Theatre.View.PerformancePage
         public OperaPage()
         {
             InitializeComponent();
+            (BindingContext as OperaListViewModel)?.Init();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            //BindingContext = new PerformanceListViewModel(3);
-            //(BindingContext as PerformanceListViewModel)?.Init(3);
         }
     }
 }

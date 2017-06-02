@@ -1,4 +1,8 @@
-﻿using Xamarin.Forms;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
+using Rg.Plugins.Popup.Services;
+using Theatre.Services;
+using Xamarin.Forms;
 
 namespace Theatre.View.PerformancePage
 {
