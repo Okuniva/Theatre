@@ -23,7 +23,6 @@ namespace Theatre.Helpers
 
     private const string SettingsKey = "settings_key";
     private static readonly string SettingsDefault = string.Empty;
-    private static readonly bool IaFirstStart = true;
 
     #endregion
 

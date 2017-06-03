@@ -2,8 +2,7 @@
 
 namespace Theatre.ViewModel
 {
-    public class ArticleListViewModel : INotifyPropertyChanged
+    public class ArticleListViewModel 
     {
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

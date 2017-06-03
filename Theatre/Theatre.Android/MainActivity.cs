@@ -1,11 +1,10 @@
-﻿using System;
-
+﻿using System.Net.Http;
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using FFImageLoading;
+using Xamarin.Forms.Platform.Android;
+using FFImageLoading.Config;
 
 namespace Theatre.Droid
 {
@@ -16,7 +15,14 @@ namespace Theatre.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
+            
+            FFImageLoading.Forms.Droid.CachedImageRenderer.Init();
+            var config = new Configuration
+            {
+                HttpClient = new HttpClient(handler: new ModernHttpClient.NativeMessageHandler()),  //используем быстрые библиотеки для загрузки
+                FadeAnimationDuration = 250,  //ускоряем анимацию появления
+            };
+            FFImageLoading.ImageService.Instance.Initialize(config);
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);

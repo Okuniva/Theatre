@@ -10,12 +10,12 @@ namespace Theatre.View.PerformancePage
         public СomedyPage()
         {
             InitializeComponent();
-            (BindingContext as ComedyListViewModel)?.Init();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            (BindingContext as ComedyListViewModel)?.Init();
         }
     }
 }

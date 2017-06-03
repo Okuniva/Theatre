@@ -4,22 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Theatre.View.PerformancePage;
+using Theatre.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Theatre.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class WelcomPage : CarouselPage
+    public partial class WelcomPage : ContentPage
     {
         public WelcomPage()
         {
             InitializeComponent();
         }
 
-        private  void Button_OnClicked(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
-             Navigation.PushModalAsync(new SwipeLeftMenuPage(), true);
+            base.OnAppearing();
+            (BindingContext as LoadingViewModel)?.Init();
+        }
+
+        private async void Button_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new SwipeLeftMenuPage(), true);
         }
     }
 }

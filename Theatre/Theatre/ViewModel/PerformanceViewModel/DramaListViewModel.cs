@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using Plugin.Settings;
 using Theatre.Model;
 using Theatre.Services;
 
@@ -22,7 +21,7 @@ namespace Theatre.ViewModel
             set
             {
                 _drama = value;
-                OnPropertyChanged("Opera");
+                OnPropertyChanged("Drama");
             }
         }
 
@@ -32,29 +31,12 @@ namespace Theatre.ViewModel
         {
             DBService = dbService;
 
-            //if ("1" == CrossSettings.Current.GetValueOrDefault<string>("timestamp", "1"))
-            //{
-            //    CrossSettings.Current.AddOrUpdateValue<string>("timestamp", "0");
-            //    Reset();
-            //}
-            //else
-            //{
             Init();
-            //}
         }
 
-        //1 - Opera
-        //2 - Comedy
-        //3 - Opera
-        //4 - Dream
         public void Init()
         {
             Drama = new ObservableCollection<Performance>(DBService.GetPerformancesByType(1));
-        }
-
-        public async void Reset()
-        {
-            //Drama = await new LoadServices().ResetAllData(DBService);
         }
     }
 }

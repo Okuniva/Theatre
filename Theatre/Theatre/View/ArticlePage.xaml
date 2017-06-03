@@ -3,11 +3,16 @@
     x:Class="Theatre.View.ArticlePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Theatre;assembly=Theatre"
-    BindingContext="{Binding ArticleListVM, Source={x:Static local:App.VMLocator}}">
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:local="clr-namespace:Theatre;assembly=Theatre">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin Forms!" />
-        </StackLayout>
+        <ffimageloading:CachedImage
+            DownsampleToViewSize="true"
+            HeightRequest="300"
+            HorizontalOptions="Center"
+            LoadingPlaceholder="placeholder.png"
+            Source="https://unsplash.it/600/600/?random"
+            VerticalOptions="Center"
+            WidthRequest="300" />
     </ContentPage.Content>
 </ContentPage>

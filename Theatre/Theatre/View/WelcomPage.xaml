@@ -1,14 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<CarouselPage
+<ContentPage
     x:Class="Theatre.View.WelcomPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <ContentPage>
-        <ContentPage.Content>
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Theatre.Controls;assembly=Theatre"
+    xmlns:local="clr-namespace:Theatre;assembly=Theatre"
+    BindingContext="{Binding LoadingVM, Source={x:Static local:App.VMLocator}}">
+
+    <controls:StateContainer State="{Binding State}">
+
+        <controls:StateCondition State="Loading">
+            <ActivityIndicator IsRunning="True" />
+        </controls:StateCondition>
+
+        <controls:StateCondition State="Normal">
             <StackLayout>
-                <Label Text="Welcome to Xamarin Forms!" />
-                <Button Clicked="Button_OnClicked"></Button>
+                <Label Text="Welcome" />
+                <Button Clicked="Button_OnClicked" />
             </StackLayout>
-        </ContentPage.Content>
-    </ContentPage>
-</CarouselPage>
+        </controls:StateCondition>
+
+        <controls:StateCondition State="Error">
+            <StackLayout>
+                <Label Text="Ошибка загрузки данных" />
+                <Button Command="{Binding LoadDataCommand}" Text="ПОВТОРИТЬ" />
+            </StackLayout>
+        </controls:StateCondition>
+
+        <controls:StateCondition State="NoInternet">
+            <StackLayout>
+                <Label Text="Отсутствует интернет-соединение" />
+                <Button Command="{Binding LoadDataCommand}" Text="ПОВТОРИТЬ" />
+            </StackLayout>
+        </controls:StateCondition>
+    </controls:StateContainer>
+</ContentPage>

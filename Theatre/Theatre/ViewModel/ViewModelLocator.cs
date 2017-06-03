@@ -7,6 +7,7 @@ namespace Theatre.ViewModel
 {
     public class ViewModelLocator
     {
+        //public LoadingViewModel LoadingVM { get; set; }
         public DramaListViewModel DramaListVM { get; set; }
         public DreamListViewModel DreamListVM { get; set; }
         public OperaListViewModel OperaListVM { get; set; }
@@ -18,8 +19,9 @@ namespace Theatre.ViewModel
         public ViewModelLocator()
         {
             var dbServiceToUse = new RealmDBService();
-           
 
+            //LoadingVM = new LoadingViewModel(dbServiceToUse);
+            new LoadServices().ResetAllData(dbServiceToUse);
             DramaListVM = new DramaListViewModel(dbServiceToUse);
             DreamListVM = new DreamListViewModel(dbServiceToUse);
             OperaListVM = new OperaListViewModel(dbServiceToUse);

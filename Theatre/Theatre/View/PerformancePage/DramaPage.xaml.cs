@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using Plugin.Settings;
-using Theatre.ViewModel;
+﻿using Theatre.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,13 +10,13 @@ namespace Theatre.View.PerformancePage
         public DramaPage()
         {
             InitializeComponent();
-            (BindingContext as DramaListViewModel)?.Init();
 
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            (BindingContext as DramaListViewModel)?.Init();
         }
     }
 }

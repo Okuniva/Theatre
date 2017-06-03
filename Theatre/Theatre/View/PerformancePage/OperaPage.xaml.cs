@@ -10,12 +10,12 @@ namespace Theatre.View.PerformancePage
         public OperaPage()
         {
             InitializeComponent();
-            (BindingContext as OperaListViewModel)?.Init();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            (BindingContext as OperaListViewModel)?.Init();
         }
     }
 }

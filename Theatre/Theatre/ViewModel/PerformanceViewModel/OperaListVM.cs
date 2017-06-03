@@ -21,7 +21,7 @@ namespace Theatre.ViewModel
             set
             {
                 _opera = value;
-                OnPropertyChanged("Drama");
+                OnPropertyChanged("Opera");
             }
         }
 

@@ -10,12 +10,12 @@ namespace Theatre.View.PerformancePage
         public DreamPage()
         {
             InitializeComponent();
-            (BindingContext as DreamListViewModel)?.Init();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            (BindingContext as DreamListViewModel)?.Init();
         }
     }
 }

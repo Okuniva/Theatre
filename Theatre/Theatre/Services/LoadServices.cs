@@ -15,59 +15,7 @@ namespace Theatre.Services
     {
         private static readonly HttpClient _client = new HttpClient();
 
-        public async void SetPerfomances(IDBService dbService)
-        {
-            var jsonContens =
-            await _client.GetStringAsync("http://api-theatre.herokuapp.com/utils/updates?stamp=" +
-                                         CrossSettings.Current.GetValueOrDefault<string>("timestamp", "0"));
-            //await _client.GetStringAsync("http://api-theatre.herokuapp.com/utils/updates?stamp=0");
-            var o = JObject.Parse(jsonContens);
-            var performances =
-                JsonConvert.DeserializeObject<List<Performance>>(o.SelectToken(@"$.response.performances").ToString());
-
-            foreach (var performance in performances)
-            {
-                var newPerformance = new Performance
-                {
-                    id = performance.id,
-                    desc = performance.desc,
-                    img = performance.img,
-                    author = performance.author,
-                    name = performance.name,
-                    p_type_id = performance.p_type_id,
-                    theatre_id = performance.theatre_id,
-                    theatre_name = performance.theatre_name,
-                    hall_name = performance.hall_name,
-                    near = performance.near
-                };
-
-                //newPerformance.actors.AddRange(performance.actors);
-
-                foreach (var poster in performance.posters)
-                {
-                    newPerformance.posters.Add(poster);
-                }
-                Debug.WriteLine("AddNewPerf: {0}", newPerformance.id);
-                dbService.SavePerfomance(newPerformance);
-            }
-            Debug.WriteLine("SetComplite");
-        }
-
-        public async Task<ObservableCollection<Performance>> GetPerfomances()
-        {
-            var jsonContens = await _client.GetStringAsync("http://api-theatre.herokuapp.com/utils/updates?stamp=0");
-            JObject o = JObject.Parse(jsonContens);
-            var str = o.SelectToken(@"$.response.performances");
-            var performances = JsonConvert.DeserializeObject<ObservableCollection<Performance>>(str.ToString());
-            //var performances = JsonConvert.DeserializeObject<ObservableCollection<Opera>>((string) type);
-
-            //Debug.WriteLine(@"$.response.performances[?(@.p_type_id==1)]");^
-            //return null;
-            return performances;
-        }
-
-        //public async Task<ObservableCollection<Performance>> ResetAllData(IDBService dbService)
-        public async Task ResetAllData(IDBService dbService)
+        public async void ResetAllData(IDBService dbService)
         {
             var jsonContens = await _client.GetStringAsync("http://api-theatre.herokuapp.com/utils/updates?stamp=" +
                                                            CrossSettings.Current.GetValueOrDefault<string>("timestamp",
@@ -130,7 +78,6 @@ namespace Theatre.Services
             //}
             Debug.WriteLine(data.response.performances.Count);
             CrossSettings.Current.AddOrUpdateValue<string>("timestamp", data.response.timestamp);
-            //return data.response.performances;
         }
     }
 }
