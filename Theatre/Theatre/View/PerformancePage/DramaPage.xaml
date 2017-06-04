@@ -11,6 +11,8 @@
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
         IsPullToRefreshEnabled="False"
+        ItemSelected="OnItemSelected"
+        ItemTapped="OnItemTapped"
         ItemsSource="{Binding Drama}">
         <ListView.ItemTemplate>
             <DataTemplate>

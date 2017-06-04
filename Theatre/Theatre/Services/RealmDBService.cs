@@ -11,7 +11,7 @@ namespace Theatre.Services
 {
     public class RealmDBService : IDBService
     {
-        private Realm RealmInstance;
+        protected Realm RealmInstance;
 
         public RealmDBService()
         {

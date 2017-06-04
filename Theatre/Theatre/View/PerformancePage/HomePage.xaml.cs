@@ -12,10 +12,5 @@ namespace Theatre.View.PerformancePage
         {
             InitializeComponent();
         }
-
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-        }
     }
 }

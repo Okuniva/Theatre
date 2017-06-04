@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using FFImageLoading.Config;
+using Plugin.Connectivity;
 using Plugin.Settings;
 using Theatre.Services;
 using Theatre.View;
@@ -9,7 +10,7 @@ using Xamarin.Forms;
 
 namespace Theatre
 {
-    public partial class App : Application
+    public class App : Application
     {
         public static ViewModelLocator VMLocator = new ViewModelLocator();
 
@@ -19,13 +20,13 @@ namespace Theatre
             //if ("1" == CrossSettings.Current.GetValueOrDefault<string>("timestamp", "1"))
             //{
 
-            //    MainPage = new View.SwipeLeftMenuPage();
+            MainPage = new View.SwipeLeftMenuPage();
             //    MainPage = new NavigationPage(new View.WelcomPage());
             //}
             //else
-            {
-                MainPage = new View.SwipeLeftMenuPage();
-            }
+            //{
+            // MainPage = new View.PerformancePage.HomePage();
+            //}
         }
 
         protected override void OnStart()

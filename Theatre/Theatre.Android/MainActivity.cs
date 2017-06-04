@@ -19,13 +19,15 @@ namespace Theatre.Droid
             FFImageLoading.Forms.Droid.CachedImageRenderer.Init();
             var config = new Configuration
             {
-                HttpClient = new HttpClient(handler: new ModernHttpClient.NativeMessageHandler()),  //используем быстрые библиотеки для загрузки
-                FadeAnimationDuration = 250,  //ускоряем анимацию появления
+                HttpClient = new HttpClient(handler: new ModernHttpClient.NativeMessageHandler()),
+                FadeAnimationDuration = 250,
             };
             FFImageLoading.ImageService.Instance.Initialize(config);
+
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
             LoadApplication(new App());
         }
     }

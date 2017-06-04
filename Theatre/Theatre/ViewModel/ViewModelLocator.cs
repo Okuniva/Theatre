@@ -1,27 +1,26 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
+using Plugin.Connectivity;
 using Plugin.Settings;
+using Realms;
 using Theatre.Services;
+using Xamarin.Forms;
 
 namespace Theatre.ViewModel
 {
     public class ViewModelLocator
     {
-        //public LoadingViewModel LoadingVM { get; set; }
         public DramaListViewModel DramaListVM { get; set; }
         public DreamListViewModel DreamListVM { get; set; }
         public OperaListViewModel OperaListVM { get; set; }
         public ComedyListViewModel ComedyListVM { get; set; }
-        //public DramaListViewModel ArticleListVM { get; set; }
-        //public DramaListViewModel TheatresListVM { get; set; }
-        //public DramaListViewModel TicketListVM { get; set; }
 
         public ViewModelLocator()
         {
-            var dbServiceToUse = new RealmDBService();
+            IDBService dbServiceToUse = new RealmDBService();
 
-            //LoadingVM = new LoadingViewModel(dbServiceToUse);
-            new LoadServices().ResetAllData(dbServiceToUse);
+            if (CrossConnectivity.Current.IsConnected) new LoadServices().ResetAllData(dbServiceToUse);
+
             DramaListVM = new DramaListViewModel(dbServiceToUse);
             DreamListVM = new DreamListViewModel(dbServiceToUse);
             OperaListVM = new OperaListViewModel(dbServiceToUse);

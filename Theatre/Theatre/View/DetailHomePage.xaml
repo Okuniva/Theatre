@@ -1,10 +1,94 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Theatre.View.DetailHomePage">
+<ContentPage
+    x:Class="Theatre.View.DetailHomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customRender="clr-namespace:Theatre.CustomRender;assembly=Theatre"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    Title="{Binding Performance.name}">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin Forms!" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout
+                HorizontalOptions="FillAndExpand"
+                Orientation="Vertical"
+                VerticalOptions="FillAndExpand">
+                <forms:CachedImage Aspect="AspectFit" Source="{Binding Performance.img}" />
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                        FontAttributes="None"
+                        FontSize="Small"
+                        Text="Дата: "
+                        TextColor="#519657" />
+                    <Label
+                        FontSize="Small"
+                        Text="{Binding Performance.name}"
+                        TextColor="Black" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                        FontAttributes="None"
+                        FontSize="Small"
+                        Text="Театр: "
+                        TextColor="#519657" />
+                    <Label
+                        FontSize="Small"
+                        Text="{Binding Performance.theatre_name}"
+                        TextColor="Black" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                        FontAttributes="None"
+                        FontSize="Small"
+                        Text="Зал: "
+                        TextColor="#519657" />
+                    <Label
+                        FontSize="Small"
+                        Text="{Binding Performance.hall_name}"
+                        TextColor="Black" />
+                </StackLayout>
+                <BoxView
+                    HeightRequest="2"
+                    WidthRequest="40"
+                    Color="#519657" />
+                <Label
+                    FontAttributes="None"
+                    FontSize="Medium"
+                    Text="Описание"
+                    TextColor="#519657" />
+                <customRender:HtmlLabel Text="{Binding Performance.desc}" />
+                <BoxView
+                    HeightRequest="2"
+                    WidthRequest="40"
+                    Color="#519657" />
+                <Label
+                    FontSize="Medium"
+                    Text="Другие Даты:"
+                    TextColor="#519657" />
+                <ListView
+                    x:Name="DateLV"
+                    HasUnevenRows="True"
+                    ItemsSource="{Binding Posters}"
+                    SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout
+                                        Padding="5"
+                                        BackgroundColor="#519657"
+                                        Orientation="Horizontal">
+                                        <Label Text="{Binding date}" TextColor="Black" />
+                                        <Label
+                                            HorizontalOptions="EndAndExpand"
+                                            Text="Забронировать"
+                                            TextColor="Black" />
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

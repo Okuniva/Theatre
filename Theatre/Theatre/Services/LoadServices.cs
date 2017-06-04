@@ -22,6 +22,7 @@ namespace Theatre.Services
                                                                "0"));
             var data = JsonConvert.DeserializeObject<RootObject>(jsonContens);
 
+            dbService = new RealmDBService();
             foreach (var performance in data.response.performances)
             {
                 var newPerformance = new Performance
