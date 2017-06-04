@@ -5,35 +5,37 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:me="clr-namespace:Theatre.CustomRender;assembly=Theatre">
     <MasterDetailPage.Master>
-        <ContentPage Title="Menu" BackgroundColor="#321911">
+        <ContentPage>
             <StackLayout Orientation="Vertical">
                 <StackLayout BackgroundColor="#321911" HeightRequest="18" />
                 <ListView
                     x:Name="navigationDrawerList"
-                    BackgroundColor="#8b6b61"
+                    BackgroundColor="#e2c0b5"
                     ItemSelected="OnMenuItemSelected"
                     RowHeight="60"
                     SeparatorVisibility="Default">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <me:CustomViewCell>
-                                <StackLayout
-                                    Padding="5,0,0,0"
-                                    Orientation="Horizontal"
-                                    Spacing="10"
-                                    VerticalOptions="FillAndExpand">
-                                    <Image
-                                        HeightRequest="40"
-                                        Source="{Binding Icon}"
-                                        VerticalOptions="Center"
-                                        WidthRequest="40" />
-                                    <Label
-                                        FontSize="Large"
-                                        Text="{Binding Title}"
-                                        TextColor="Black"
-                                        VerticalOptions="Center" />
-                                </StackLayout>
-                            </me:CustomViewCell>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout
+                                        Padding="5,0,0,0"
+                                        Orientation="Horizontal"
+                                        Spacing="10"
+                                        VerticalOptions="FillAndExpand">
+                                        <Image
+                                            HeightRequest="40"
+                                            Source="{Binding Icon}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="40" />
+                                        <Label
+                                            FontSize="Large"
+                                            Text="{Binding Title}"
+                                            TextColor="Black"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

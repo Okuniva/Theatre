@@ -1,4 +1,6 @@
-﻿using Theatre.ViewModel;
+﻿using Theatre.View;
+using Theatre.View.PerformancePage;
+using Theatre.ViewModel;
 using Xamarin.Forms;
 
 namespace Theatre
@@ -15,7 +17,8 @@ namespace Theatre
             //}
             //else
             //{
-            MainPage = new View.SwipeLeftMenuPage();
+            MainPage = new SwipeLeftMenuPage();
+            //MainPage = new DramaPage();
             //}
         }
 

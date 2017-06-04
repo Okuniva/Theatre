@@ -10,21 +10,20 @@
         x:Name="DreamLV"
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
+        HorizontalOptions="FillAndExpand"
         IsPullToRefreshEnabled="True"
         IsRefreshing="{Binding IsRefreshing}"
         ItemSelected="OnItemSelected"
         ItemTapped="OnItemTapped"
         ItemsSource="{Binding Dream}"
-        RefreshCommand="{Binding RefreshCommand}">
+        RefreshCommand="{Binding RefreshCommand}"
+        VerticalOptions="FillAndExpand">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <ViewCell.View>
                         <StackLayout Spacing="0">
-                            <forms:CachedImage
-                                Aspect="AspectFit"
-                                LoadingPlaceholder="placeholder-image-wide.png"
-                                Source="{Binding img}" />
+                            <forms:CachedImage Source="{Binding img}" />
                             <StackLayout Padding="5">
                                 <Label
                                     FontAttributes="Bold"
