@@ -1,10 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Theatre.View.SearchPage">
+<ContentPage
+    x:Class="Theatre.View.SearchPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    Title="Поиск">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin Forms!" />
+            <Label x:Name="labelTitle" Text="Введите название спектакля или его ключевые слова. Например:" />
+            <SearchBar
+                x:Name="SearchBarName"
+                HeightRequest="50"
+                Placeholder="Отцы и дети, Маскарад, глава семьи Дженнаро" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

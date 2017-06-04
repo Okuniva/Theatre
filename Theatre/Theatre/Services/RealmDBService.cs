@@ -34,6 +34,11 @@ namespace Theatre.Services
             RealmInstance.Write(() => RealmInstance.Add(theatre, true));
         }
 
+        public void SavePerfomance(Performance performance)
+        {
+            RealmInstance.Write(() => RealmInstance.Add(performance, true));
+        }
+
         public List<Performance> GetPerfomances()
         {
             return RealmInstance.All<Performance>().ToList();
@@ -43,11 +48,6 @@ namespace Theatre.Services
         {
             Debug.WriteLine(RealmInstance.All<Performance>().Count(t => t.p_type_id == type));
             return RealmInstance.All<Performance>().Where(t => t.p_type_id == type).ToList();
-        }
-
-        public void SavePerfomance(Performance performance)
-        {
-            RealmInstance.Write(() => RealmInstance.Add(performance, true));
         }
 
         public List<Performance> SearchPerformances(string searchText)

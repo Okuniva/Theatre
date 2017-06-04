@@ -20,16 +20,16 @@ namespace Theatre
             //}
             //else
             //{
-            MainPage = new SwipeLeftMenuPage();
+            MainPage = new View.PerformancePage.DramaPage();
             //MainPage = new DramaPage();
             //}
         }
 
         protected override void OnStart()
         {
-            MobileCenter.Start("ios=edf2bf0f-f04d-4195-8e38-8399070e8604;" +
+            MobileCenter.Start("android=a6661ad2-5409-4246-815f-3abe74fece90;" +
                                "uwp={Your UWP App secret here};" +
-                               "android={Your Android App secret here}",
+                               "ios={Your iOS App secret here}",
                 typeof(Analytics), typeof(Crashes));
         }
 
