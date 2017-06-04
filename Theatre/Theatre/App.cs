@@ -2,6 +2,9 @@
 using Theatre.View.PerformancePage;
 using Theatre.ViewModel;
 using Xamarin.Forms;
+using Microsoft.Azure.Mobile;
+using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.Azure.Mobile.Crashes;
 
 namespace Theatre
 {
@@ -24,7 +27,10 @@ namespace Theatre
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            MobileCenter.Start("ios=edf2bf0f-f04d-4195-8e38-8399070e8604;" +
+                               "uwp={Your UWP App secret here};" +
+                               "android={Your Android App secret here}",
+                typeof(Analytics), typeof(Crashes));
         }
 
         protected override void OnSleep()
