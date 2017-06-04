@@ -11,9 +11,11 @@
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
         IsPullToRefreshEnabled="True"
+        IsRefreshing="{Binding IsRefreshing}"
         ItemSelected="OnItemSelected"
         ItemTapped="OnItemTapped"
-        ItemsSource="{Binding Comedy}">
+        ItemsSource="{Binding Comedy}"
+        RefreshCommand="{Binding RefreshCommand}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

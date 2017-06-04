@@ -80,5 +80,43 @@ namespace Theatre.Services
             Debug.WriteLine(data.response.performances.Count);
             CrossSettings.Current.AddOrUpdateValue<string>("timestamp", data.response.timestamp);
         }
+
+        public async Task RefreshPerformance(IDBService dbService)
+        {
+            var jsonContens = await _client.GetStringAsync("http://api-theatre.herokuapp.com/utils/updates?stamp=" +
+                                                           CrossSettings.Current.GetValueOrDefault<string>("timestamp",
+                                                               "0"));
+
+            JObject o = JObject.Parse(jsonContens);
+            var performances =
+                JsonConvert.DeserializeObject<List<Performance>>(o.SelectToken(@"$.response.performances").ToString());
+
+            dbService = new RealmDBService();
+            foreach (var performance in performances)
+            {
+                var newPerformance = new Performance
+                {
+                    id = performance.id,
+                    desc = performance.desc,
+                    img = performance.img,
+                    author = performance.author,
+                    name = performance.name,
+                    p_type_id = performance.p_type_id,
+                    theatre_id = performance.theatre_id,
+                    theatre_name = performance.theatre_name,
+                    hall_name = performance.hall_name,
+                    near = performance.near
+                };
+
+                //newPerformance.actors.AddRange(performance.actors);
+
+                foreach (var poster in performance.posters)
+                {
+                    newPerformance.posters.Add(poster);
+                }
+
+                dbService.SavePerfomance(newPerformance);
+            }
+        }
     }
 }

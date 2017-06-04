@@ -10,10 +10,12 @@
         x:Name="DramaLV"
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
-        IsPullToRefreshEnabled="False"
+        IsPullToRefreshEnabled="True"
+        IsRefreshing="{Binding IsRefreshing}"
         ItemSelected="OnItemSelected"
         ItemTapped="OnItemTapped"
-        ItemsSource="{Binding Drama}">
+        ItemsSource="{Binding Drama}"
+        RefreshCommand="{Binding RefreshCommand}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

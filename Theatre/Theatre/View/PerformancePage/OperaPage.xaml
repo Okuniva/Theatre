@@ -10,10 +10,12 @@
         x:Name="OperaLV"
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
-        IsPullToRefreshEnabled="False"
+        IsPullToRefreshEnabled="True"
+        IsRefreshing="{Binding IsRefreshing}"
         ItemSelected="OnItemSelected"
         ItemTapped="OnItemTapped"
-        ItemsSource="{Binding Opera}">
+        ItemsSource="{Binding Opera}"
+        RefreshCommand="{Binding RefreshCommand}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

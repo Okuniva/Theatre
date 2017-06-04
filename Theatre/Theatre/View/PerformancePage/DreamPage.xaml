@@ -10,10 +10,12 @@
         x:Name="DreamLV"
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
-        IsPullToRefreshEnabled="False"
+        IsPullToRefreshEnabled="True"
+        IsRefreshing="{Binding IsRefreshing}"
         ItemSelected="OnItemSelected"
         ItemTapped="OnItemTapped"
-        ItemsSource="{Binding Dream}">
+        ItemsSource="{Binding Dream}"
+        RefreshCommand="{Binding RefreshCommand}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

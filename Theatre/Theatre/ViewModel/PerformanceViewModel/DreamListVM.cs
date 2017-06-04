@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace Theatre.ViewModel
 {
-    public class DreamListViewModel 
+    public class DreamListViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<Performance> Dream { get; private set; }
 
@@ -17,6 +17,35 @@ namespace Theatre.ViewModel
         public ICommand GoToDetailCommand { get; private set; }
 
         protected IDBService DBService;
+
+        private bool _isRefreshing = false;
+
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
+        public bool IsRefreshing
+        {
+            get => _isRefreshing;
+            set
+            {
+                _isRefreshing = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("IsRefreshing"));
+            }
+        }
+
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    IsRefreshing = true;
+
+                    await new LoadServices().RefreshPerformance(DBService);
+
+                    IsRefreshing = false;
+                });
+            }
+        }
 
         public DreamListViewModel(IDBService dbService)
         {
@@ -42,7 +71,7 @@ namespace Theatre.ViewModel
         {
             var page = new DetailHomePage(new DetailHomeViewModel(performance));
 
-            Navigation.PushAsync(page);
+            Navigation.PushAsync(page, true);
         }
     }
 }
