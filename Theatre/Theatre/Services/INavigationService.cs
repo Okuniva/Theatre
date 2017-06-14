@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace Theatre.Services
 {
@@ -9,5 +12,6 @@ namespace Theatre.Services
         //Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase;
         //Task RemoveLastFromBackStackAsync();
         //Task RemoveBackStackAsync();
+        
     }
 }

@@ -12,7 +12,7 @@ namespace Theatre.Model
         public string timestamp { get; set; }
         public List<Article> articles { get; set; }
         public List<Actor> actors { get; set; }
-        public ObservableCollection<Performance> performances { get; set; }
+        public List<Performance> performances { get; set; }
         public List<Theatre> theatres { get; set; }
     }
 }

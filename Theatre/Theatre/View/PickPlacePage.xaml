@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Theatre.View.PickPlacePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Theatre.Controls;assembly=Theatre"
+    Title="Бронирование"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <controls:PinchToZoomContainer>
+                <controls:PinchToZoomContainer.Content>
+                    <Image
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Aspect="AspectFit"
+                        Source="{Binding Poster.id, StringFormat='http://api-theatre.herokuapp.com/tickets/get_hall/{0}'}" />
+                </controls:PinchToZoomContainer.Content>
+            </controls:PinchToZoomContainer>
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                Text="Сектор" />
+            <Picker
+                x:Name="PickerSector"
+                Grid.Row="2"
+                Grid.Column="0"
+                SelectedIndexChanged="PickerSector_OnSelectedIndexChanged" />
+            <Label
+                Grid.Row="3"
+                Grid.Column="0"
+                Text="Ряд" />
+            <Picker
+                x:Name="PickerRow"
+                Grid.Row="4"
+                Grid.Column="0"
+                SelectedIndexChanged="PickerRow_OnSelectedIndexChanged" />
+            <Label
+                Grid.Row="5"
+                Grid.Column="0"
+                Text="Место" />
+            <Picker
+                x:Name="PickerSeat"
+                Grid.Row="6"
+                Grid.Column="0"
+                SelectedIndexChanged="PickerSeat_OnSelectedIndexChanged" />
+            <Label
+                Grid.Row="6"
+                Grid.Column="0"
+                Text="Цена: "
+                VerticalOptions="End" />
+            <Label
+                x:Name="LabelPrice"
+                Grid.Row="7"
+                Grid.Column="0"
+                VerticalOptions="End" />
+            <Button
+                Grid.Row="8"
+                Grid.Column="0"
+                VerticalOptions="End"
+                BackgroundColor="Green"
+                Clicked="Button_OnClicked"
+                Text="Забронировать" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

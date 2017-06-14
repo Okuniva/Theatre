@@ -4,13 +4,24 @@ using System.Windows.Input;
 using Theatre.Model;
 using Theatre.Services;
 using Theatre.View;
+using Theatre.View.PerformancePage;
 using Xamarin.Forms;
 
 namespace Theatre.ViewModel
 {
     public class DreamListViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Performance> Dream { get; private set; }
+        private ObservableCollection<Performance> _dream;
+
+        public ObservableCollection<Performance> Dream
+        {
+            get => _dream;
+            set
+            {
+                _dream = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Dream"));
+            }
+        }
 
         public INavigation Navigation { get; set; }
 
@@ -59,17 +70,24 @@ namespace Theatre.ViewModel
         public void Init(INavigation navigation)
         {
             Navigation = navigation;
-            Dream = new ObservableCollection<Performance>(DBService.GetPerformancesByType(4));
+            Dream = new ObservableCollection<Performance>(DBService.GetPerformancesByType(5));
         }
 
         public void Init()
         {
-            Dream = new ObservableCollection<Performance>(DBService.GetPerformancesByType(4));
+            Dream = new ObservableCollection<Performance>(DBService.GetPerformancesByType(5));
         }
 
         internal void GoToDetail(Performance performance)
         {
             var page = new DetailHomePage(new DetailHomeViewModel(performance));
+
+            Navigation.PushAsync(page, true);
+        }
+
+        internal void DateSelected(string date)
+        {
+            var page = new CalendarResultPage(new CalendarResultListViewModel(date));
 
             Navigation.PushAsync(page, true);
         }

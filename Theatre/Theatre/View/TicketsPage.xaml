@@ -3,11 +3,42 @@
     x:Class="Theatre.View.TicketsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:local="clr-namespace:Theatre;assembly=Theatre"
     BindingContext="{Binding TicketsListVM, Source={x:Static local:App.VMLocator}}">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin Forms!" />
-        </StackLayout>
+        <ListView
+            x:Name="TicketsLV"
+            BackgroundColor="#e2c0b5"
+            CachingStrategy="RecycleElement"
+            HasUnevenRows="True"
+            HorizontalOptions="FillAndExpand"
+            IsPullToRefreshEnabled="True"
+            IsRefreshing="{Binding IsRefreshing}"
+            ItemSelected="TicketsLV_OnItemSelected"
+            ItemsSource="{Binding Tickets}"
+            RefreshCommand="{Binding RefreshCommand}"
+            VerticalOptions="FillAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout>
+                                <forms:CachedImage Source="{Binding img}" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Small"
+                                    Text="{Binding name}" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Small"
+                                    Text="{Binding date}" />
+                                <BoxView HeightRequest="5" Color="#519657" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>

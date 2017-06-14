@@ -16,7 +16,8 @@ namespace Theatre.Model
         public int theatre_id { get; set; }
         public string theatre_name { get; set; }
         public string hall_name { get; set; }
-        public List<object> actors { get; }
+        public bool IsFavorite { get; set; }
+        public List<int> actors { get; }
         public string near { get; set; }
         public IList<Poster> posters { get; }
     }

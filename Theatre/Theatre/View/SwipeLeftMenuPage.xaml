@@ -5,11 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:me="clr-namespace:Theatre.CustomRender;assembly=Theatre">
     <MasterDetailPage.Master>
-        <ContentPage>
+        <ContentPage Title="Menu" BackgroundColor="#321911">
             <StackLayout Orientation="Vertical">
-                <StackLayout BackgroundColor="#321911" HeightRequest="18" />
                 <ListView
                     x:Name="navigationDrawerList"
+                    Margin="0,18,0,0"
                     BackgroundColor="#e2c0b5"
                     ItemSelected="OnMenuItemSelected"
                     RowHeight="60"
@@ -41,6 +41,7 @@
                 </ListView>
             </StackLayout>
         </ContentPage>
+
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
         <NavigationPage />

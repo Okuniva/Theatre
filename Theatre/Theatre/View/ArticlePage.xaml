@@ -4,15 +4,40 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-    xmlns:local="clr-namespace:Theatre;assembly=Theatre">
+    xmlns:local="clr-namespace:Theatre;assembly=Theatre"
+    BindingContext="{Binding ArticleListVM, Source={x:Static local:App.VMLocator}}">
     <ContentPage.Content>
-        <ffimageloading:CachedImage
-            DownsampleToViewSize="true"
-            HeightRequest="300"
-            HorizontalOptions="Center"
-            LoadingPlaceholder="placeholder.png"
-            Source="https://unsplash.it/600/600/?random"
-            VerticalOptions="Center"
-            WidthRequest="300" />
+        <ListView
+            x:Name="DreamLV"
+            BackgroundColor="#e2c0b5"
+            CachingStrategy="RecycleElement"
+            HasUnevenRows="True"
+            HorizontalOptions="FillAndExpand"
+            IsPullToRefreshEnabled="True"
+            ItemSelected="OnItemSelected"
+            ItemTapped="OnItemTapped"
+            ItemsSource="{Binding Articles}"
+            VerticalOptions="FillAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Spacing="0">
+                                <ffimageloading:CachedImage Source="{Binding img}" />
+                                <StackLayout Padding="5">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="Small"
+                                        Text="{Binding name}" />
+                                    <Label FontSize="Small" Text="{Binding date}" />
+                                    <Label FontSize="Small" Text="{Binding theatre_name}" />
+                                </StackLayout>
+                                <BoxView HeightRequest="5" Color="#519657" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>

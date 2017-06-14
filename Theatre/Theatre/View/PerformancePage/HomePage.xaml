@@ -7,10 +7,12 @@
     Title="Афиша">
 
     <TabbedPage.Children>
-        <perf:СomedyPage Title="Коммедия" />
         <perf:DramaPage Title="Драма" />
-        <perf:OperaPage Title="Опера" />
+        <perf:СomedyPage Title="Коммедия" />
+        <perf:MelodramaPage Title="Мелодрама" />
+        <perf:TragicomedyPage Title="Трагикомедия" />
         <perf:DreamPage Title="Сказка" />
+        <perf:OtherPage Title="Другое" />
     </TabbedPage.Children>
 
 </TabbedPage>

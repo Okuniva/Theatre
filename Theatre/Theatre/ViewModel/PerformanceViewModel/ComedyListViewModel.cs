@@ -4,13 +4,24 @@ using System.Windows.Input;
 using Theatre.Model;
 using Theatre.Services;
 using Theatre.View;
+using Theatre.View.PerformancePage;
 using Xamarin.Forms;
 
 namespace Theatre.ViewModel
 {
     public class ComedyListViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Performance> Comedy { get; private set; }
+        private ObservableCollection<Performance> _comedy;
+
+        public ObservableCollection<Performance> Comedy
+        {
+            get => _comedy;
+            set
+            {
+                _comedy = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Comedy"));
+            }
+        }
 
         public INavigation Navigation { get; set; }
 
@@ -39,7 +50,7 @@ namespace Theatre.ViewModel
                 return new Command(async () =>
                 {
                     IsRefreshing = true;
-
+                    
                     await new LoadServices().RefreshPerformance(DBService);
 
                     IsRefreshing = false;
@@ -70,6 +81,13 @@ namespace Theatre.ViewModel
         internal void GoToDetail(Performance performance)
         {
             var page = new DetailHomePage(new DetailHomeViewModel(performance));
+
+            Navigation.PushAsync(page, true);
+        }
+
+        internal void DateSelected(string date)
+        {
+            var page = new CalendarResultPage(new CalendarResultListViewModel(date));
 
             Navigation.PushAsync(page, true);
         }

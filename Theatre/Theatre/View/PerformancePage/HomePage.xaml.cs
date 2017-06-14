@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
 using Theatre.Services;
@@ -11,6 +12,13 @@ namespace Theatre.View.PerformancePage
         public HomePage()
         {
             InitializeComponent();
+            //this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count]);
+
+            //var existingPages = Navigation.NavigationStack.ToList();
+            //foreach (var page in existingPages)
+            //{
+            //    Navigation.RemovePage(page);
+            //}
         }
     }
 }

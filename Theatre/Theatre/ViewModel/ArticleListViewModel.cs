@@ -8,9 +8,21 @@ using Xamarin.Forms;
 
 namespace Theatre.ViewModel
 {
-    public class ArticleListViewModel 
+    public class ArticleListViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Performance> Article { get; private set; }
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
+        private ObservableCollection<Article> _articles;
+
+        public ObservableCollection<Article> Articles
+        {
+            get => _articles;
+            set
+            {
+                _articles = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Other"));
+            }
+        }
 
         public INavigation Navigation { get; set; }
 
@@ -30,12 +42,12 @@ namespace Theatre.ViewModel
         public void Init(INavigation navigation)
         {
             Navigation = navigation;
-            Article = new ObservableCollection<Performance>(DBService.GetPerformancesByType(2));
+            Articles = new ObservableCollection<Article>(DBService.GetArticles());
         }
 
         public void Init()
         {
-            Article = new ObservableCollection<Performance>(DBService.GetPerformancesByType(2));
+            Articles = new ObservableCollection<Article>(DBService.GetArticles());
         }
 
         internal void GoToDetail(Performance performance)
@@ -44,5 +56,6 @@ namespace Theatre.ViewModel
 
             Navigation.PushAsync(page, true);
         }
+
     }
 }

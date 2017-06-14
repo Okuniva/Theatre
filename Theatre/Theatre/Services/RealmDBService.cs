@@ -39,6 +39,11 @@ namespace Theatre.Services
             RealmInstance.Write(() => RealmInstance.Add(performance, true));
         }
 
+        public void SaveTicket(Ticket ticket)
+        {
+            RealmInstance.Write(() => RealmInstance.Add(ticket, true));
+        }
+
         public List<Performance> GetPerfomances()
         {
             return RealmInstance.All<Performance>().ToList();
@@ -54,6 +59,21 @@ namespace Theatre.Services
         {
             return RealmInstance.All<Performance>()
                 .Where(p => p.name.Contains(searchText) || p.desc.Contains(searchText)).ToList();
+        }
+
+        public List<Ticket> GetTickets()
+        {
+            return RealmInstance.All<Ticket>().ToList();
+        }
+
+        public List<Article> GetArticles()
+        {
+            return RealmInstance.All<Article>().ToList();
+        }
+
+        public List<Performance> GetPerformancesByDate(string date)
+        {
+            return RealmInstance.All<Performance>().Where(p => p.near.Contains(date)).ToList();
         }
     }
 }

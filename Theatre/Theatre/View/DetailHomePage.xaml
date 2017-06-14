@@ -21,7 +21,7 @@
                         TextColor="#519657" />
                     <Label
                         FontSize="Small"
-                        Text="{Binding Performance.name}"
+                        Text="{Binding Performance.near}"
                         TextColor="Black" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
@@ -67,6 +67,8 @@
                 <ListView
                     x:Name="DateLV"
                     HasUnevenRows="True"
+                    ItemSelected="OnItemSelected"
+                    ItemTapped="OnItemTapped"
                     ItemsSource="{Binding Posters}"
                     SeparatorVisibility="None">
                     <ListView.ItemTemplate>

@@ -11,9 +11,14 @@ namespace Theatre.ViewModel
     public class ViewModelLocator
     {
         public DramaListViewModel DramaListVM { get; set; }
-        public DreamListViewModel DreamListVM { get; set; }
-        public OperaListViewModel OperaListVM { get; set; }
         public ComedyListViewModel ComedyListVM { get; set; }
+        public MelodramaListViewModel MelodramaListVM { get; set; }
+        public TragicomedyListViewModel TragicomedyListVM { get; set; }
+        public DreamListViewModel DreamListVM { get; set; }
+        public OtherListViewModel OtherListVM { get; set; }
+        public TicketsListViewViewModel TicketsListVM { get; set; }
+        public ArticleListViewModel ArticleListVM { get; set; }
+        //public OperaListViewModel OperaListVM { get; set; }
 
         public ViewModelLocator()
         {
@@ -22,9 +27,14 @@ namespace Theatre.ViewModel
             if (CrossConnectivity.Current.IsConnected) new LoadServices().ResetAllData(dbServiceToUse);
 
             DramaListVM = new DramaListViewModel(dbServiceToUse);
-            DreamListVM = new DreamListViewModel(dbServiceToUse);
-            OperaListVM = new OperaListViewModel(dbServiceToUse);
             ComedyListVM = new ComedyListViewModel(dbServiceToUse);
+            MelodramaListVM = new MelodramaListViewModel(dbServiceToUse);
+            TragicomedyListVM = new TragicomedyListViewModel(dbServiceToUse);
+            DreamListVM = new DreamListViewModel(dbServiceToUse);
+            OtherListVM = new OtherListViewModel(dbServiceToUse);
+            TicketsListVM = new TicketsListViewViewModel(dbServiceToUse);
+            ArticleListVM = new ArticleListViewModel(dbServiceToUse);
+            //OperaListVM = new OperaListViewModel(dbServiceToUse);
         }
     }
 }

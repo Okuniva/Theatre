@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Theatre.View.PerformancePage.CalendarResultPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    <ContentPage.Content>
+        <ListView
+            x:Name="PerformanceLV"
+            CachingStrategy="RecycleElement"
+            HasUnevenRows="True"
+            HorizontalOptions="FillAndExpand"
+            IsPullToRefreshEnabled="True"
+            ItemSelected="OnItemSelected"
+            ItemTapped="OnItemTapped"
+            ItemsSource="{Binding Performances}"
+            VerticalOptions="FillAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Spacing="0">
+                                <forms:CachedImage Source="{Binding img}" />
+                                <StackLayout Padding="5">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="Small"
+                                        Text="{Binding name}" />
+                                    <Label FontSize="Small" Text="{Binding near}" />
+                                    <Label FontSize="Small" Text="{Binding theatre_name}" />
+                                </StackLayout>
+                                <BoxView HeightRequest="5" Color="#519657" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

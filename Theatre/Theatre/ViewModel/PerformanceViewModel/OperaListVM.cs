@@ -10,7 +10,17 @@ namespace Theatre.ViewModel
 {
     public class OperaListViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Performance> Opera { get; private set; }
+        private ObservableCollection<Performance> _opera;
+
+        public ObservableCollection<Performance> Opera
+        {
+            get => _opera;
+            set
+            {
+                _opera = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Opera"));
+            }
+        }
 
         public INavigation Navigation { get; set; }
 

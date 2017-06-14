@@ -66,24 +66,6 @@
     <Reference Include="FormsViewGroup, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.5.239-pre3\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Azure.Mobile, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Azure.Mobile.0.12.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Mobile.Analytics, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Azure.Mobile.Analytics.0.12.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Mobile.Analytics.Android.Bindings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Azure.Mobile.Analytics.0.12.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Analytics.Android.Bindings.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Mobile.Android.Bindings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Azure.Mobile.0.12.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Android.Bindings.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Mobile.Crashes, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Azure.Mobile.Crashes.0.12.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Crashes.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Mobile.Crashes.Android.Bindings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Azure.Mobile.Crashes.0.12.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Crashes.Android.Bindings.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="ModernHttpClient, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\modernhttpclient.2.1.2\lib\MonoAndroid\ModernHttpClient.dll</HintPath>
@@ -101,6 +83,12 @@
     </Reference>
     <Reference Include="OkHttp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\modernhttpclient.2.1.2\lib\MonoAndroid\OkHttp.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PCLStorage.1.0.2\lib\monoandroid\PCLStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage.Abstractions, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PCLStorage.1.0.2\lib\monoandroid\PCLStorage.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Connectivity, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.Connectivity.2.3.0\lib\MonoAndroid10\Plugin.Connectivity.dll</HintPath>
@@ -182,18 +170,28 @@
   <ItemGroup>
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Render\HtmlLabelRenderer.cs" />
+    <Compile Include="DependecyServices\CostomLoadPDF.cs" />
+    <Compile Include="Render\CustomHtmlLabelRenderer.cs" />
+    <Compile Include="Render\CustomWebViewRenderer.cs" />
+    <Compile Include="Render\VideoRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <AndroidAsset Include="Assets\Content\file.pdf" />
+    <AndroidAsset Include="file.pdf" />
+    <AndroidAsset Include="Assets\JosefinSans-Thin.ttf" />
+    <AndroidAsset Include="Assets\OpenSans-CondLight.ttf" />
+    <AndroidAsset Include="Assets\PoiretOne-Regular.ttf" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
+    <AndroidResource Include="Resources\values\styles.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
@@ -214,6 +212,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Font\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Video\Welcom.mp4" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Asset1ldpi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\CalendarIc24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\itemIcon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\itemIcon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\itemIcon3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\itemIcon4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\itemIcon5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\itemIcon6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\itemIcon7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\itemIcon8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\itemIcon9.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

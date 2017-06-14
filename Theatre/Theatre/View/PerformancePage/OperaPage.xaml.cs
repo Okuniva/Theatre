@@ -1,7 +1,9 @@
 ﻿using Theatre.Model;
 using Theatre.ViewModel;
 using Xamarin.Forms;
+using Platform = Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace Theatre.View.PerformancePage
 {
@@ -11,6 +13,8 @@ namespace Theatre.View.PerformancePage
         public OperaPage()
         {
             InitializeComponent();
+
+            OperaLV.On<Platform::Android>().SetIsFastScrollEnabled(true);
         }
 
         protected override void OnAppearing()
@@ -26,7 +30,7 @@ namespace Theatre.View.PerformancePage
 
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            ((ListView)sender).SelectedItem = null;
+            ((Xamarin.Forms.ListView)sender).SelectedItem = null;
         }
     }
 }

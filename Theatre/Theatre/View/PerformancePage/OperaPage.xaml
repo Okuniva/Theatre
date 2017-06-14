@@ -8,6 +8,7 @@
     BindingContext="{Binding OperaListVM, Source={x:Static local:App.VMLocator}}">
     <ListView
         x:Name="OperaLV"
+        BackgroundColor="#e2c0b5"
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
         HorizontalOptions="FillAndExpand"

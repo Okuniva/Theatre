@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Theatre.View.WelcomPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Theatre.Controls;assembly=Theatre">
+    <ContentPage.Content>
+        <Grid
+            Padding="0"
+            ColumnSpacing="0"
+            RowSpacing="0">
+            <controls:Video
+                x:Name="video"
+                HorizontalOptions="Fill"
+                Loop="true"
+                Source="Video/Welcom.mp4"
+                VerticalOptions="Fill" />
+            <StackLayout
+                Padding="20,10,10,20"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center">
+                <Image Source="Asset1ldpi.png" />
+                <Label
+                    FontSize="38"
+                    HorizontalOptions="Center"
+                    Text="Добро пожаловать"
+                    TextColor="WhiteSmoke"
+                    VerticalOptions="Center">
+                    <Label.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.Android>PoiretOne-Regular.ttf#PoiretOne-Regular</OnPlatform.Android>
+                        </OnPlatform>
+                    </Label.FontFamily>
+                </Label>
+                <Label
+                    FontSize="Micro"
+                    HorizontalOptions="Center"
+                    Text="Вы можете просматривать афишу театров Уфы. Узнавать их последнии новсти и оформлять бронирование мест на спектакли"
+                    TextColor="GhostWhite"
+                    VerticalOptions="Center" />
+                <Button
+                    Margin="0,42,0,0"
+                    BackgroundColor="#5d4037"
+                    Clicked="Button_OnClicked"
+                    FontSize="Large"
+                    Text="Афиша"
+                    TextColor="#ffffff"
+                    WidthRequest="150" />
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

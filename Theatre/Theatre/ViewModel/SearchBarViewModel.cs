@@ -10,15 +10,25 @@ namespace Theatre.ViewModel
 {
     public class SearchBarViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Performance> Performances { get; private set; }
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
+        private ObservableCollection<Performance> _performances;
+
+        public ObservableCollection<Performance> Performances
+        {
+            get => _performances;
+            set
+            {
+                _performances = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Performances"));
+            }
+        }
 
         public INavigation Navigation { get; set; }
 
         public ICommand GoToDetailCommand { get; private set; }
 
         protected IDBService DBService = new RealmDBService();
-
-        public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         private string _searchText;
 
@@ -33,8 +43,10 @@ namespace Theatre.ViewModel
             }
         }
 
-        public SearchBarViewModel()
+        public SearchBarViewModel(INavigation navigation)
         {
+            Navigation = navigation;
+
             GoToDetailCommand = new Command<Performance>(GoToDetail);
         }
 

@@ -1,7 +1,10 @@
-﻿using Theatre.Model;
+﻿using System;
+using Theatre.Model;
 using Theatre.ViewModel;
 using Xamarin.Forms;
+using Platform = Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace Theatre.View.PerformancePage
 {
@@ -11,8 +14,9 @@ namespace Theatre.View.PerformancePage
         public DramaPage()
         {
             InitializeComponent();
+            DramaLV.On<Platform::Android>().SetIsFastScrollEnabled(true);
         }
-        
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -26,7 +30,20 @@ namespace Theatre.View.PerformancePage
 
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            ((ListView)sender).SelectedItem = null;
+            ((Xamarin.Forms.ListView)sender).SelectedItem = null;
+        }
+
+        private void datePicker_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            DateTime t = DataSelected.Date;
+            string date = String.Format("{0:dd-MM-yyyy}", t);
+            (BindingContext as DramaListViewModel).DateSelected(date);
+        }
+
+        private void Calendar_OnClicked(object sender, EventArgs e)
+        {
+            IsEnabled = true;
+            DataSelected.Focus();
         }
     }
 }
