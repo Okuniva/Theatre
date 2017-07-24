@@ -17,8 +17,6 @@ namespace Theatre.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand LoginCommand => new Command(Init);
-        //private INavigation _navigation;
-        //private Task _LoadJsonTask = null;
         protected IDBService DBService;
         private States _state = States.Loading;
         public enum States

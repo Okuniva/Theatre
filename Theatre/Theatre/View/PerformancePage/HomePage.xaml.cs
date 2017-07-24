@@ -12,13 +12,6 @@ namespace Theatre.View.PerformancePage
         public HomePage()
         {
             InitializeComponent();
-            //this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count]);
-
-            //var existingPages = Navigation.NavigationStack.ToList();
-            //foreach (var page in existingPages)
-            //{
-            //    Navigation.RemovePage(page);
-            //}
         }
     }
 }

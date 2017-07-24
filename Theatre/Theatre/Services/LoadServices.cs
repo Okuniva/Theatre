@@ -32,10 +32,6 @@ namespace Theatre.Services
             {
                 stream.Write(pdfByteArray, 0, pdfByteArray.Length);
             }
-
-            Debug.WriteLine("333");
-            //return true;
-            //DependencyService.Get<IFileWorker>().DownloadPDF("1", pdfByteArray);
         }
 
         public async void ResetAllData(IDBService dbService)
@@ -90,19 +86,6 @@ namespace Theatre.Services
                 dbService.SaveArticle(newArticle);
             }
 
-            //foreach (var theatre in data.theatres)
-            //{
-            //    var newTheatre = new Model.Theatre
-            //    {
-            //        id = theatre.id,
-            //        name = theatre.name,
-            //        desc = theatre.desc,
-            //        img = theatre.img,
-            //        address = theatre.address
-            //    };
-
-            //    dbService.SaveTheatre(newTheatre);
-            //}
             Debug.WriteLine(data.response.performances.Count);
             CrossSettings.Current.AddOrUpdateValue<string>("timestamp", data.response.timestamp);
         }
