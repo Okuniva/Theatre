@@ -35,45 +35,6 @@ namespace Theatre.Droid
 
             LoadApplication(new App());
         }
-
-        async void downloadAsync(object sender, System.EventArgs ea)
-        {
-            /* later add cookies
-                CookieManager cookieManager = CookieManager.Instance;
-                String cookie = cookieManager.GetCookie (value);
-            */
-
-            string value = ("http://www.axmag.com/download/pdfurl-guide.pdf");
-
-            Uri baseUri = new Uri(value);
-            HttpClientHandler clientHandler = new HttpClientHandler();
-            //  clientHandler.CookieContainer.Add (baseUri, new Cookie ("Cookie", cookie));
-            HttpClient httpClient = new HttpClient(clientHandler);
-            httpClient.BaseAddress = baseUri;
-
-            byte[] imageBytes = await httpClient.GetByteArrayAsync(baseUri);
-
-            string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-
-            string localFilename = "aa.pdf";
-            string localPath = System.IO.Path.Combine(documentsPath, localFilename);
-
-            File.WriteAllBytes(localPath, imageBytes); // writes to local storage   
-
-            var localImage = new Java.IO.File(localPath);
-            if (localImage.Exists())
-            {
-
-                global::Android.Net.Uri uri = global::Android.Net.Uri.FromFile(localImage);
-
-                var intent = new Intent(Intent.ActionView, uri);
-                //  intent.SetType ("application/pdf");
-
-                intent.SetDataAndType(global::Android.Net.Uri.FromFile(localImage), "application/pdf");
-
-                this.StartActivity(intent);
-            }
-        }
     }
 }
 
